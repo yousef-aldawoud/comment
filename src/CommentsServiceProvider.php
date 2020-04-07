@@ -9,7 +9,7 @@ class CommentsServiceProvider extends ServiceProvider {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
         $this->publishes([
             __DIR__.'/migrations' => database_path('migrations')
-        ], 'migrations');
+        ], 'comments-migrations');
     }
 
     public function register(){
