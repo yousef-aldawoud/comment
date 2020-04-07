@@ -1,0 +1,25 @@
+{
+    "name": "aldawoud/comments",
+    "description": "A comment section package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yousef Aldawoud",
+            "email": "yousef.l.t.aldawoud@protonmail.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4": {
+            "Aldawoud\\Comments":"src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aldawoud\\Comments\\CommentsServiceProvider"
+            ]
+        }
+    }
+}
