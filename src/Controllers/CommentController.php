@@ -25,12 +25,7 @@ class CommentController extends Controller {
     }
 
     public function create(CommentSection $commentSection, CreateCommentRequest $request){
-        $comment = new Comment;
-        $comment->comment = $request->comment;
-        $comment->comment_section_id = $commentSection->id;
-        $comment->user_id = auth()->user()->id;
-        $comment->save();
-        return ['status'=>'success'];
+        return Comment::createComment($commentSection, $request->comment);
     }
 
     public function getReplies(Comment $comment){

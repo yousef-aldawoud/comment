@@ -39,5 +39,17 @@ class Comment extends Model{
         return $reply;
 
     }
+
+    public static function createComment(CommentSection $commentSection,string $commentTxt){
+        if(auth()->user()===null){
+            return false;
+        }
+        $comment = new Comment;
+        $comment->comment = $commentTxt;
+        $comment->comment_section_id = $commentSection->id;
+        $comment->user_id = auth()->user()->id;
+        $comment->save();
+        return $comment;
+    }
     
 } 
