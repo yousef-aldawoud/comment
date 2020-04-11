@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 class Comment extends Model{
     protected $table = 'comments';
 
+    protected static $nested = true;
+
     public function user(){
         return $this->belongsTo("App\User");
     }
@@ -33,7 +35,11 @@ class Comment extends Model{
         $reply->comment = $comment;
         $reply->comment_section_id = $this->comment_section_id;
         $reply->reply_user_id = $this->user_id;
-        $reply->reply_comment_id = $this->reply_comment_id === null ? $this->id : $this->reply_comment_id;
+        if(self::$nested){
+            $reply->reply_comment_id = $this->id;
+        }else{
+            $reply->reply_comment_id = $this->reply_comment_id === null ? $this->id : $this->reply_comment_id;
+        }
         $reply->user_id = auth()->user()->id;
         $reply->save();
         return $reply;
@@ -53,3 +59,4 @@ class Comment extends Model{
     }
     
 } 
+

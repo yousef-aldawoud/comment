@@ -35,6 +35,7 @@ class CommentController extends Controller {
             $comment['user']= $user !== null ? $user->name : "" ;
             $replyUser = User::find($comment->reply_user_id);
             $comment['reply_user_name'] = $replyUser !== null ? $replyUser->name : "Anonymos";
+            $comment['number_of_replies']= $comment->replies()->count();
             return $comment;
         });
         return $comments;
